@@ -8,13 +8,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-<<<<<<< HEAD
-        android:theme="@style/AppTheme">
-        <activity android:name=".controllers.Splash" android:screenOrientation="portrait">
-=======
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".controllers.Splash">
->>>>>>> 51c82ffc4b5555725c63da3e8a961a9fadf7301b
+        <activity android:name=".controllers.Splash" android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
