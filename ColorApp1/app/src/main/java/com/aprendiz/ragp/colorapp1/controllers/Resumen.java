@@ -1,8 +1,11 @@
 package com.aprendiz.ragp.colorapp1.controllers;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aprendiz.ragp.colorapp1.R;
 import com.aprendiz.ragp.colorapp1.models.GestorDB;
@@ -48,5 +51,30 @@ public class Resumen extends AppCompatActivity {
         score.setIncorrectas(Integer.toString(Juego.incorrectas));
         GestorDB gestorDB = new GestorDB(this);
         gestorDB.inputData(score);
+    }
+
+    public void comp(View view) {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, "correctas" + txtCorrectas + "incorrectas" + txtIncorrectas + "aciertos" + txtAciertos);
+        intent.setPackage("com.twitter.android");
+
+        try {
+            startActivity(intent);
+
+        } catch (Exception e) {
+            Toast.makeText(this, "No cuentas con esta app, Por favor instala esta app", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+
+        }
+    }
+
+    public void asd(View view) {
+        Toast.makeText(this, "Aun no, espera que estoy viendo un codigo", Toast.LENGTH_SHORT).show();
+    }
+
+    public void salir(View view) {
+
+        finish();
     }
 }
