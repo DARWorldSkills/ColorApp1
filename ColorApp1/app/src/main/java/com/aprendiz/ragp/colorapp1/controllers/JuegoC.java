@@ -1,6 +1,7 @@
 package com.aprendiz.ragp.colorapp1.controllers;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Juego extends AppCompatActivity implements View.OnClickListener{
+public class JuegoC extends AppCompatActivity implements View.OnClickListener{
     TextView txtCorrectas, txtIncorrectas, txtAciertos, txtIntentos, txtPalabra;
     Button btnColor1, btnColor2, btnColor3, btnColor4;
     ProgressBar tiempo;
@@ -26,17 +27,23 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
     int ipR, icR, valorcito;
     boolean bandera = true;
     int ab =0;
-
+    SharedPreferences juegoC;
+    int mTiempo, modo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_juego);
+        setContentView(R.layout.activity_juego_c);
         inizialite();
         cleanV();
         inputLists();
         randomizar();
         inputData();
         cronometro();
+        if (modo==1){
+            segundos[1]=30;
+        }else {
+            segundos[1]=0;
+        }
         tiempo.setProgress(segundos[1]);
 
     }
@@ -56,10 +63,14 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
                         @Override
                         public void run() {
                             segundos[0]++;
-                            segundos[1]--;
+                            if (modo==1){
+                                segundos[1]--;
+                            }else {
+                                segundos[1]++;
+                            }
 
 
-                            if (segundos[0]==3){
+                            if (segundos[0]==mTiempo){
                                 segundos[0]=0;
                                 intentos++;
                                 incorrectas++;
@@ -78,11 +89,21 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
     }
 
     private void endGame() {
-        if ((incorrectas==3 || segundos[1]==0) && ab==0  ){
+        if ((incorrectas==3 || segundos[1]==0) && ab==0  && modo==1){
             ab=1;
             inputData();
             bandera=false;
-            Intent intent = new Intent(Juego.this, Resumen.class);
+            Intent intent = new Intent(JuegoC.this, Resumen.class);
+            startActivity(intent);
+            finish();
+
+        }
+
+        if ((incorrectas==3) && ab==0  && modo==2){
+            ab=1;
+            inputData();
+            bandera=false;
+            Intent intent = new Intent(JuegoC.this, Resumen.class);
             startActivity(intent);
             finish();
 
@@ -129,6 +150,10 @@ public class Juego extends AppCompatActivity implements View.OnClickListener{
         segundos = new int[]{0,30};
         bandera= true;
         ab =0;
+        juegoC = getSharedPreferences("juegoC",MODE_PRIVATE);
+        mTiempo = juegoC.getInt("tiempo",3);
+        modo = juegoC.getInt("modo",1);
+
     }
 
     //Método para inicializar los campos de la vista necesarios

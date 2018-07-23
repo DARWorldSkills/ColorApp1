@@ -4,4 +4,6 @@
     <string name="puntuacion">Puntuación</string>
     <string name="configuracion">Configuración</string>
     <string name="puntaje">Puntaje</string>
+    <string name="ingresetiempo">Ingrese el tiempo de despliege de la palabra</string>
+    <string name="guardarJugar">Guardar y Jugar</string>
 </resources>

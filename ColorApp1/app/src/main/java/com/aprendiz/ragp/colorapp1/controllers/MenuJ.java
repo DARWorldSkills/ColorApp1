@@ -10,11 +10,13 @@ import com.aprendiz.ragp.colorapp1.R;
 
 public class MenuJ extends AppCompatActivity implements View.OnClickListener{
     Button btnJugar, btnPuntuacion, btnConfiguracion;
+    public static int guardar =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_j);
         inizialite();
+        guardar =0;
     }
 
     private void inizialite() {
@@ -34,17 +36,20 @@ public class MenuJ extends AppCompatActivity implements View.OnClickListener{
             case R.id.btnJugar:
                 intent = new Intent(MenuJ.this, Juego.class);
                 startActivity(intent);
+                guardar =1;
                 break;
 
             case R.id.btnPuntuacion:
                 intent = new Intent(MenuJ.this, Puntaje.class);
                 startActivity(intent);
+                guardar =0;
                 break;
 
 
             case R.id.btnConfiguracion:
                 intent = new Intent(MenuJ.this, Configuracion.class);
                 startActivity(intent);
+                guardar =0;
                 break;
         }
     }
