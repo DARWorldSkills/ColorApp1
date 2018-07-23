@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ColorApp1</string>
+    <string name="jugar">Jugar</string>
+    <string name="puntuacion">Puntuación</string>
+    <string name="configuracion">Configuración</string>
+    <string name="puntaje">Puntaje</string>
+</resources>
